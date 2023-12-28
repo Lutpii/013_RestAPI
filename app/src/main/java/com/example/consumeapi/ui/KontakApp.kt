@@ -54,8 +54,16 @@ fun TopAppBarKontak(
     modifier: Modifier = Modifier,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: () -> Unit = {}
-){
+){CenterAlignedTopAppBar(title = { Text(title) },
+    modifier = modifier,
+    scrollBehavior = scrollBehavior,
+    navigationIcon = {
+        if (canNavigateBack) {
+            IconButton(onClick = navigateUp) {
 
+            }
+        }
+    })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
