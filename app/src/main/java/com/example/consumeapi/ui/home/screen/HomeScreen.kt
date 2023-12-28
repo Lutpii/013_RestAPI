@@ -34,7 +34,7 @@ import com.example.consumeapi.ui.home.viewmodel.KontakUIState
 
 
 @Composable
-fun HomeScreen(
+fun HomeStatus(
     kontakUIState: KontakUIState, retryAction: () -> Unit, modifier: Modifier = Modifier
 ) {
 
