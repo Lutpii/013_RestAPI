@@ -60,7 +60,10 @@ fun TopAppBarKontak(
     navigationIcon = {
         if (canNavigateBack) {
             IconButton(onClick = navigateUp) {
-
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = ""
+                )
             }
         }
     })
