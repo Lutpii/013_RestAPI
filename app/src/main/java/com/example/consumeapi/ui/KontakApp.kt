@@ -20,6 +20,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.consumeapi.R
+import com.example.consumeapi.navigation.PengelolaHalaman
 import com.example.consumeapi.ui.home.screen.HomeScreen
 import com.example.consumeapi.ui.home.viewmodel.HomeViewModel
 
@@ -31,7 +32,13 @@ fun KontakApp(
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = { TopAppBar(scrollBehavior = scrollBehavior) }
+        topBar = {
+            TopAppBarKontak(
+                scrollBehavior = scrollBehavior,
+                title = "null",
+                canNavigateBack = true
+            )
+        }
 
     ) {
         Surface(
@@ -39,13 +46,11 @@ fun KontakApp(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            HomeScreen(
-                kontakUIState = homeViewModel.kontakUIState,
-                retryAction = homeViewModel::getKontak
-            )
+            PengelolaHalaman()
         }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopAppBarKontak(
@@ -54,19 +59,27 @@ fun TopAppBarKontak(
     modifier: Modifier = Modifier,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: () -> Unit = {}
-){CenterAlignedTopAppBar(title = { Text(title) },
-    modifier = modifier,
-    scrollBehavior = scrollBehavior,
-    navigationIcon = {
-        if (canNavigateBack) {
-            IconButton(onClick = navigateUp) {
-                Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = ""
-                )
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = stringResource(id = R.string.app_name),
+                style = MaterialTheme.typography.headlineSmall
+            )
+        },
+        modifier = modifier,
+        scrollBehavior = scrollBehavior,
+        navigationIcon = {
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = ""
+                    )
+                }
             }
-        }
-    })
+        },
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
